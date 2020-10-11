@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une catégorie
+{% endblock %}
+
+{% block body %}
+
+	{% embed "partials/admin_page.html.twig" %}
+		{% block table %}
+			<div class="row">
+				<div class="col">
+					<h2>Catégories</h2>
+					<p>Voici la liste des catégories présentes sur le site :</p>
+				</div>
+				<div class="col">
+					<a class="btn btn-secondary m-2" href="{{path('admin_videos')}}">
+						Voir les vidéos
+					</a>
+					<a class="btn btn-primary m-2 js-scroll-trigger" href="#ajouterCategory">
+						Ajouter une catégorie
+					</a>
+				</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Nombre de vidéos associées</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for category in categories %}
+						<tr>
+							<td scope="row">{{category.title}}</td>
+							<td>{{category.videos.count}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endblock %}
+
+
+		{% block form %}
+			<h5 id="ajouterCategory">Ajouter une categorie</h5>
+
+			{{ form_start(form) }}
+			{{ form_end(form) }}
+			{{ form_row(form.valider) }}
+
+		{% endblock %}
+
+	{% endembed %}
+
+
+{% endblock %}

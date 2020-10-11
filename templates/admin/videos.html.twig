@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vidéos
+{% endblock %}
+
+{% block body %}
+
+	{% embed "partials/admin_page.html.twig" %}
+		{% import "macros/macros.html.twig" as macros %}
+		{% block table %}
+			<div class="row">
+				<div class="col">
+					<h2>Vidéos</h2>
+					<p>Voici la liste des vidéos présentes sur le site :</p>
+				</div>
+				<div class="col">
+					<a class="btn btn-secondary m-2" href="{{path('admin_video_categories')}}">
+						Voir les catégories
+					</a>
+					<a class="btn btn-primary m-2 js-scroll-trigger" href="#ajouterVideo">
+						Ajouter une vidéo
+					</a>
+				</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Url</th>
+						<th>Description</th>
+						<th>Catégorie</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for video in videos %}
+						<tr>
+							<td>{{video.title}}</td>
+							<td>
+								<a href="{{video.url}}">
+									{{video.url}}
+								</a>
+							</td>
+							<td>{{video.description}}</td>
+							<td>{{video.category.title}}</td>
+							<td>
+								{{macros.actionButton(path('admin_modify_video', {"id": video.id} ), "fa fa-edit", "Modifier")}}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		{% endblock %}
+
+		{% block form %}
+			<h5 id="ajouterVideo">Ajouter une vidéo</h5>
+
+			{{ form_start(form) }}
+			{{ form_end(form) }}
+			{{ form_row(form.valider) }}
+
+		{% endblock %}
+
+	{% endembed %}
+{% endblock %}

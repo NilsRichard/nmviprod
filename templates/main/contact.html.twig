@@ -1,0 +1,49 @@
+{% extends 'main/page.html.twig' %}
+
+{% block title %}Contactez moi
+{% endblock %}
+
+{% block sections %}
+	<section class="page-section" id="about">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm">
+					<h3>Envoyer un message</h3>
+					<hr>
+
+					<form>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Nom</label>
+							<input type="text" class="form-control" id="exampleInputPassword1">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Adresse email</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+							<small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre email.</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Message</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary">Envoyer</button>
+					</form>
+
+				</div>
+				<div class="col-sm"></div>
+				<div class="col-sm">
+					<h3>Comment me contacter</h3>
+					<hr>
+					<br>
+					<h5>Adresse</h5>
+					<p>123 Fifth Avenue, NY 10160, New York, USA</p>
+					<h5>Email</h5>
+					<p>contact@example.com</p>
+					<h5>Telephone</h5>
+					<p>+33 7 00 00 00 00</p>
+				</div>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

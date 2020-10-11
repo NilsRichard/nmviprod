@@ -1,0 +1,52 @@
+{% extends 'main/page.html.twig' %}
+
+{% block title %}Location de matériel
+{% endblock %}
+
+{% block sections %}
+	<section class="page-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 text-center">
+					<h3>Explication sur la location</h3>
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat dolorem nihil accusamus libero dolores mollitia suscipit deserunt quo odio quaerat! Expedita, consequuntur inventore natus earum delectus laborum ab! Reiciendis, facilis.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="page-section">
+
+		<div class="container">
+			<h3>Les appareils</h3>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img src="{{asset('img/appareil.jpg')}}" alt="appareil" style="height:400px;width:100%">
+						<div class="caption">
+							<p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img src="{{asset('img/appareil2.jpg')}}" alt="appareil" style="height:400px;width:100%">
+						<div class="caption">
+							<p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img src="{{asset('img/appareil3.jpg')}}" alt="appareil" style="height:400px;width:100%">
+						<div class="caption">
+							<p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+{% endblock %}

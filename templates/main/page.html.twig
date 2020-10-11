@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page title
+{% endblock %}
+
+{% block body %}
+	<div style="padding-top: 150px;"></div>
+	<div class="h-100">
+		<section class="page-section-small " >
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-4 text-center">
+						<h2 class="mt-0">{{ block('title') }}</h2>
+						<hr class="divider primary my-4"/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		{% block sections %}{% endblock %}
+
+	</div>
+{% endblock %}

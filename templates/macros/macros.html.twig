@@ -1,0 +1,19 @@
+{% macro actionButton(href, icon, tooltip, validate) %}
+	<a href="{{href}}" style="text-decoration:none;" data-toggle="tooltip" data-placement="left" title="{{tooltip}}" {% if validate is defined and validate %} onclick="return confirm('Voulez vous supprimer cette ligne ?')" {% endif %}>
+		<i class="w3-large fa-fw {{icon}}"></i>
+	</a>
+{% endmacro %}
+
+{% macro validationButtons(formValidate, pathCancel) %}
+	<br>
+	<div class="row">
+		<div class="col-sm">
+			{{ form_row(formValidate, { 'label': 'Valider' }) }}
+		</div>
+		<div class="col-sm">
+			<a href="{{ pathCancel }}">
+				<div class="btn btn-danger">Annuler</div>
+			</a>
+		</div>
+	</div>
+{% endmacro %}

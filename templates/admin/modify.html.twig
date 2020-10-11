@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification
+{% endblock %}
+
+{% block body %}
+
+	{% embed "partials/admin_page.html.twig" %}
+    {% import "macros/macros.html.twig" as macros %}
+		{% block form %}
+			<h5>Modification de {{entityName}}</h5>
+
+			{{ form_start(form) }}
+			{{ form_end(form) }}
+
+			{{ form_row(form.valider) }}
+            <a class="btn btn-danger" href="{{cancelUrl}}">Annuler</a>
+
+		{% endblock %}
+	{% endembed %}
+{% endblock %}

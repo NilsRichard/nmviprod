@@ -1,0 +1,52 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg fixed-top py-3 mb-5" id="mainNav">
+	<div class="container">
+		<a class="navbar-brand js-scroll-trigger" href="{{path('home')}}">
+
+			<img class="d-none d-md-block" src="{{ asset('img/logo-150.png') }}" alt="logo nmvi">
+			<span class="d-md-none d-lg-none">
+				Nmvi production
+			</span>
+			{% if is_granted('ROLE_ADMIN') %}
+				<span class="navbar-text" style="cursor: default;">
+					Connecté ({{app.user.email}})
+				</span>
+			{% endif %}
+
+		</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto my-2 my-lg-0">
+
+				{% if is_granted('ROLE_ADMIN') %}
+
+					<li class="nav-item">
+						<a class="nav-link text-danger" href="{{path('app_logout')}}">Déconnexion / Retour au site</a>
+					</li>
+				{% else %}
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('home')}}">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('about')}}">Qui suis-je ?</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('portfolio')}}">Portfolio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('location')}}">Location</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('contact')}}">Contact</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_login')}}">Admin</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>
