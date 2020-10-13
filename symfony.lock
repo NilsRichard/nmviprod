@@ -1,4 +1,7 @@
 {
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -339,6 +342,9 @@
     "symfony/polyfill-intl-idn": {
         "version": "v1.17.1"
     },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.18.1"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.17.1"
     },
@@ -505,5 +511,11 @@
     },
     "webmozart/assert": {
         "version": "1.9.0"
+    },
+    "zendframework/zend-code": {
+        "version": "3.4.1"
+    },
+    "zendframework/zend-eventmanager": {
+        "version": "3.2.1"
     }
 }
