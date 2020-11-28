@@ -7,7 +7,7 @@
 	<section class="page-section-small">
 		<div class="container-fluid">
 			<div class="row justify-content-end">
-				<div class="col-lg-4 text-center">
+				<div class="col-4 text-center">
 
 					<select class="form-control" id="" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
 						<option value="{{path('portfolio')}}" selected>Toutes les catégories</option>
@@ -30,11 +30,13 @@
 
 				{% if (selectedCategory == null or category.id == selectedCategory.id) and  category.videos is not empty %}
 					<div class="row p-5">
+						<div class="col-12">
 						<h5>{{category.title}}</h5>
+						</div>
 						<div class="row">
 							{% for video in category.videos %}
 								<div
-									class="col-lg-4 col-sm-6 p-2">
+									class="col-sm-6 col-lg-4 p-2">
 									<!-- 16:9 aspect ratio -->
 									<a href="{{path('portfolio_video', {id: video.id})}}">
 										<img style="height:100%;width:100%" src="https://img.youtube.com/vi/{{video.youtubeId}}/maxresdefault.jpg"/>
