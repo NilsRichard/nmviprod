@@ -3,11 +3,14 @@
 {% block title %}Page title
 {% endblock %}
 
+{% block backbutton %}{% endblock %}
+
 {% block body %}
-	<div style="padding-top: 150px;"></div>
+	<div style="padding-top: 200px;"></div>
 	<div class="h-100">
-		<section class="page-section-small " >
-			<div class="container">
+		<section class="page-section-small ">
+			<div class="container-fluid">
+				{{ block('backbutton') }}
 				<div class="row justify-content-center">
 					<div class="col-lg-4 text-center">
 						<h2 class="mt-0">{{ block('title') }}</h2>
@@ -19,5 +22,9 @@
 
 		{% block sections %}{% endblock %}
 
+
 	</div>
+	{% block test %}
+		<div style="height:150px;"></div>
+	{% endblock %}
 {% endblock %}

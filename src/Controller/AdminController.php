@@ -70,6 +70,11 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $url = $video->getUrl();
+            parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
+            $youtubeId = $my_array_of_vars['v'];
+            $video->setYoutubeId($youtubeId);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($video);
             $entityManager->flush();

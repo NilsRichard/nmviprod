@@ -5,9 +5,9 @@
 
 {% block sections %}
 	<section class="page-section-small">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8 text-center">
+		<div class="container-fluid">
+			<div class="row justify-content-end">
+				<div class="col-lg-4 text-center">
 
 					<select class="form-control" id="" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
 						<option value="{{path('portfolio')}}" selected>Toutes les catégories</option>
@@ -22,49 +22,32 @@
 			</div>
 		</div>
 	</section>
-	<div id="portfolio">
-		<div class="container-fluid p-0">
-			<div class="row no-gutters">
+	<div id="portfolio" class="container-fluid py-3 pb-5">
+		{% for category in categories %}
+			{% if selectedCategory != null and category.id == selectedCategory.id and category.videos is empty %}
+				<h3 class="text-center">Cette catégorie est vide.</h3>
+			{% else %}
 
-				{% for category in categories %}
-					{% if selectedCategory == null or category.id == selectedCategory.id  %}
-						{% for video in category.videos %}
-							<div
-								class="col-lg-4 col-sm-6">
-								<!-- 16:9 aspect ratio -->
-								<div class="embed-responsive embed-responsive-16by9">
-									<iframe class="embed-responsive-item" allowfullscreen="" title="youtube Video Player" src="https://www.youtube.com/embed/{{video.youtubeId}}?feature=oembed&amp;start&amp;end&amp;wmode=opaque&amp;loop=0&amp;controls=1&amp;mute=0&amp;rel=0&amp;modestbranding=0"></iframe>
+				{% if (selectedCategory == null or category.id == selectedCategory.id) and  category.videos is not empty %}
+					<div class="row p-5">
+						<h5>{{category.title}}</h5>
+						<div class="row">
+							{% for video in category.videos %}
+								<div
+									class="col-lg-4 col-sm-6 p-2">
+									<!-- 16:9 aspect ratio -->
+									<a href="{{path('portfolio_video', {id: video.id})}}">
+										<img style="height:100%;width:100%" src="https://img.youtube.com/vi/{{video.youtubeId}}/maxresdefault.jpg"/>
+									</a>
 								</div>
-							</div>
-						{% endfor %}
-					{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
 
-				{% endfor %}
 
-			</div>
-		</div>
+			{% endif %}
+		{% endfor %}
 	</div>
 
-	<section class="page-section" id="contact">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8 text-center">
-					<h2 class="mt-0">Lorem ipsum dolor sit amet.</h2>
-					<hr class="divider my-4"/>
-					<p class="text-muted mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt illo recusandae id voluptate, quam saepe dolor.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-					<i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-					<div>+33 7 00 00 00 00</div>
-				</div>
-				<div class="col-lg-4 mr-auto text-center">
-					<i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-					<!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-					<a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
-				</div>
-			</div>
-		</div>
-	</section>
 {% endblock %}

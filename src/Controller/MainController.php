@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Video;
 use App\Entity\VideoCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,6 +50,23 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/portfolio/video/{id}", name="portfolio_video" , defaults={"id"=-1})
+     */
+    public function portfolioVideo($id)
+    {
+
+        $selectedVideo =  $this->getDoctrine()->getRepository(Video::class)->findOneBy([
+            'id' => $id,
+        ]);
+
+        if($selectedVideo == null)  throw $this->createNotFoundException('La video n\'existe pas');
+
+        return $this->render('main/portfolio_video.html.twig', [
+            'selectedVideo' => $selectedVideo,
+        ]);
+    }
+
+    /**
      * @Route("/location", name="location")
      */
     public function location()
@@ -56,7 +74,6 @@ class MainController extends AbstractController
         return $this->render('main/location.html.twig', [
             'controller_name' => 'MainController',
         ]);
-        
     }
     /**
      * @Route("/contact", name="contact")
