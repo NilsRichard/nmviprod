@@ -16,7 +16,7 @@
 	</a>
 	{% if is_granted('ROLE_ADMIN') %}
 		<div class="container-fluid  justify-content-end">
-			<a class="btn btn-danger" href="{{path('app_logout')}}">Déconnexion / Retour au site</a>
+			<a class="btn btn-primary" href="{{path('app_logout')}}">Voir le site</a>
 		</div>
 	{% else %}
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +45,11 @@
 					<a class="nav-link" href="{{path('location')}}">
 						<i class="fas fa-camera-retro"></i>
 						Location</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('services')}}">
+						<i class="fas fa-video"></i>
+						Services</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{path('contact')}}">

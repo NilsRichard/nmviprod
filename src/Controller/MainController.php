@@ -6,6 +6,7 @@ use App\Entity\Video;
 use App\Entity\VideoCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class MainController extends AbstractController
 {
@@ -81,6 +82,37 @@ class MainController extends AbstractController
     public function contact()
     {
         return $this->render('main/contact.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/services", name="services")
+     */
+    public function services()
+    {
+        return $this->render('main/services.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/projectupo", name="projectupo")
+     */
+    public function projectupo()
+    {
+        return $this->render('main/project_upo.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/projectupouvp", name="projectupouvp")
+     */
+    public function projectupouvp()
+    {
+        return $this->render('main/project_upo_uvp.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
