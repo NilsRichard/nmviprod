@@ -1,25 +1,26 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg fixed-top py-3 mb-5 navbar-light " id="mainNav">
-	<a class="navbar-brand js-scroll-trigger" href="{{path('home')}}">
+	<div style="width:200px">
+		<a class="navbar-brand js-scroll-trigger" href="{{path('home')}}">
 
-		<img class="d-none d-lg-block" src="{{ asset('img/logo-150.png') }}" alt="logo nmvi">
-		<span class="d-lg-none">
-			Nmvi production
-		</span>
-		{% if is_granted('ROLE_USER') %}
-			<span class="navbar-text" style="cursor: default;">
-				Connecté ({{app.user.email}})
+			<img class="d-none d-lg-block" src="{{ asset('img/logo-150.png') }}" alt="logo nmvi">
+			<span class="d-lg-none">
+				Nmvi production
 			</span>
+			{% if is_granted('ROLE_USER') %}
+				<span class="navbar-text" style="cursor: default;">
+					Connecté ({{app.user.email}})
+				</span>
 
-		{% endif %}
+			{% endif %}
 
-	</a>
+		</a>
+	</div>
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="navbarResponsive">
+	<div class="collapse navbar-collapse " id="navbarResponsive">
 		<ul class="navbar-nav mx-auto">
-
 
 			<li class="nav-item">
 				<a class="nav-link" href="{{path('home')}}">
@@ -47,6 +48,16 @@
 					Services</a>
 			</li>
 			<li class="nav-item">
+				<a class="nav-link" href="{{path('projectupo')}}">
+					<i class="fas fa-film"></i>
+					UPO</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('projectupouvp')}}">
+					<i class="fas fa-film"></i>
+					UPO-UVP</a>
+			</li>
+			<li class="nav-item">
 				<a class="nav-link" href="{{path('contact')}}">
 					<i class="fas fa-envelope"></i>
 					Contact</a>
@@ -54,31 +65,34 @@
 
 		</ul>
 	</div>
-	<ul class="list-unstyled list-inline text-secondary d-none d-lg-block">
-		<li class="list-inline-item">
-			<a class="btn-floating btn-fb mx-1" target="_blank" href="{{info.facebook}}">
-				<i class="fab fa-facebook-f"></i>
-			</a>
-		</li>
-		<li class="list-inline-item">
-			<a class="btn-floating btn-tw mx-1" target="_blank" href="{{info.twitter}}">
-				<i class="fab fa-twitter"></i>
-			</a>
-		</li>
-		<li class="list-inline-item">
-			<a class="btn-floating btn-tw mx-1" target="_blank" href="{{info.instagram}}">
-				<i class="fab fa-instagram"></i>
-			</a>
-		</li>
-		<li class="list-inline-item">
-			<a class="btn-floating btn-gplus mx-1" target="_blank" href="{{info.youtube}}">
-				<i class="fab fa-youtube"></i>
-			</a>
-		</li>
-		<li class="list-inline-item">
-			<a class="btn-floating btn-li mx-1" target="_blank" href="{{info.linkedin}}">
-				<i class="fab fa-linkedin-in"></i>
-			</a>
-		</li>
-	</ul>
+	<div style="width:200px">
+		<ul class="list-unstyled list-inline text-secondary d-none d-lg-block">
+			<li class="list-inline-item">
+				<a class="btn-floating btn-fb mx-1" target="_blank" href="{{info.facebook}}">
+					<i class="fab fa-facebook-f"></i>
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a class="btn-floating btn-tw mx-1" target="_blank" href="{{info.twitter}}">
+					<i class="fab fa-twitter"></i>
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a class="btn-floating btn-tw mx-1" target="_blank" href="{{info.instagram}}">
+					<i class="fab fa-instagram"></i>
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a class="btn-floating btn-gplus mx-1" target="_blank" href="{{info.youtube}}">
+					<i class="fab fa-youtube"></i>
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a class="btn-floating btn-li mx-1" target="_blank" href="{{info.linkedin}}">
+					<i class="fab fa-linkedin-in"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+
 </nav>
