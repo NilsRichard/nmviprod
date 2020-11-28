@@ -27,6 +27,17 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @Route("/logged", name="logged")
+     */
+    public function logged()
+    {
+        if ($this->isGranted('ROLE_ADMIN'))
+            return $this->redirectToRoute('admin_videos');
+        else
+            return $this->redirectToRoute('home');
+    }
+
+    /**
      * @Route("/logout", name="app_logout")
      */
     public function logout()
