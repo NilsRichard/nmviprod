@@ -6,15 +6,18 @@
 {% block body %}
 
 	{% embed "partials/admin_page.html.twig" %}
-    {% import "macros/macros.html.twig" as macros %}
+		{% import "macros/macros.html.twig" as macros %}
 		{% block form %}
-			<h5>Modification de {{entityName}}</h5>
+			<h5>Modification de
+				{{entityName}}</h5>
 
 			{{ form_start(form) }}
 			{{ form_end(form) }}
 
 			{{ form_row(form.valider) }}
-            <a class="btn btn-danger" href="{{cancelUrl}}">Annuler</a>
+			{% if cancelUrl is defined %}
+				<a class="btn btn-danger" href="{{cancelUrl}}">Annuler</a>
+			{% endif %}
 
 		{% endblock %}
 	{% endembed %}

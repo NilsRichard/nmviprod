@@ -4,18 +4,33 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Entity\VideoCategory;
+use App\Entity\WebSiteContent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class MainController extends AbstractController
 {
+
+    public function renderWithContent(string $view, array $parameters = [])
+    {
+        $info =  $this->getDoctrine()->getRepository(WebSiteContent::class)->findOneBy([]);
+        if($info == null){
+            $info = new WebSiteContent();
+            $info->initializeDefault();
+        }
+
+        $parameters['info'] = $info;
+        
+        return $this->render($view, $parameters);
+    }
+
     /**
      * @Route("/", name="home")
      */
     public function index()
     {
-        return $this->render('main/index.html.twig', [
+        return $this->renderWithContent('main/index.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
@@ -25,7 +40,7 @@ class MainController extends AbstractController
      */
     public function about()
     {
-        return $this->render('main/about.html.twig', [
+        return $this->renderWithContent('main/about.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
@@ -44,7 +59,7 @@ class MainController extends AbstractController
         }
         $categories = $this->getDoctrine()->getRepository(VideoCategory::class)->findAll();
 
-        return $this->render('main/portfolio.html.twig', [
+        return $this->renderWithContent('main/portfolio.html.twig', [
             'categories' => $categories,
             'selectedCategory' => $selectedCategory,
         ]);
@@ -60,9 +75,9 @@ class MainController extends AbstractController
             'id' => $id,
         ]);
 
-        if($selectedVideo == null)  throw $this->createNotFoundException('La video n\'existe pas');
+        if ($selectedVideo == null)  throw $this->createNotFoundException('La video n\'existe pas');
 
-        return $this->render('main/portfolio_video.html.twig', [
+        return $this->renderWithContent('main/portfolio_video.html.twig', [
             'selectedVideo' => $selectedVideo,
         ]);
     }
@@ -72,7 +87,7 @@ class MainController extends AbstractController
      */
     public function location()
     {
-        return $this->render('main/location.html.twig', [
+        return $this->renderWithContent('main/location.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
@@ -81,7 +96,7 @@ class MainController extends AbstractController
      */
     public function contact()
     {
-        return $this->render('main/contact.html.twig', [
+        return $this->renderWithContent('main/contact.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
@@ -91,7 +106,7 @@ class MainController extends AbstractController
      */
     public function services()
     {
-        return $this->render('main/services.html.twig', [
+        return $this->renderWithContent('main/services.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
@@ -101,7 +116,7 @@ class MainController extends AbstractController
      */
     public function projectupo()
     {
-        return $this->render('main/project_upo.html.twig', [
+        return $this->renderWithContent('main/project_upo.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
@@ -112,7 +127,7 @@ class MainController extends AbstractController
      */
     public function projectupouvp()
     {
-        return $this->render('main/project_upo_uvp.html.twig', [
+        return $this->renderWithContent('main/project_upo_uvp.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }

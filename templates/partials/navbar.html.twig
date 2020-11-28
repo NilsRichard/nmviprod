@@ -6,7 +6,7 @@
 		<span class="d-lg-none">
 			Nmvi production
 		</span>
-		{% if is_granted('ROLE_ADMIN') %}
+		{% if is_granted('ROLE_USER') %}
 			<span class="navbar-text" style="cursor: default;">
 				Connecté ({{app.user.email}})
 			</span>
@@ -14,77 +14,71 @@
 		{% endif %}
 
 	</a>
-	{% if is_granted('ROLE_ADMIN') %}
-		<div class="container-fluid  justify-content-end">
-			<a class="btn btn-primary" href="{{path('app_logout')}}">Voir le site</a>
-		</div>
-	{% else %}
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav mx-auto">
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+		<ul class="navbar-nav mx-auto">
 
 
-				<li class="nav-item">
-					<a class="nav-link" href="{{path('home')}}">
-						<i class="fas fa-home"></i>
-						Accueil</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{path('about')}}">
-						<i class="fas fa-info-circle"></i>
-						Qui suis-je ?</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link " href="{{path('portfolio')}}">
-						<i class="fas fa-film "></i>
-						Portfolio</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{path('location')}}">
-						<i class="fas fa-camera-retro"></i>
-						Location</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{path('services')}}">
-						<i class="fas fa-video"></i>
-						Services</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{path('contact')}}">
-						<i class="fas fa-envelope"></i>
-						Contact</a>
-				</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('home')}}">
+					<i class="fas fa-home"></i>
+					Accueil</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('about')}}">
+					<i class="fas fa-info-circle"></i>
+					Qui suis-je ?</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="{{path('portfolio')}}">
+					<i class="fas fa-film "></i>
+					Portfolio</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('location')}}">
+					<i class="fas fa-camera-retro"></i>
+					Location</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('services')}}">
+					<i class="fas fa-video"></i>
+					Services</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('contact')}}">
+					<i class="fas fa-envelope"></i>
+					Contact</a>
+			</li>
 
-			</ul>
-		</div>
-		<ul class="list-unstyled list-inline text-secondary d-none d-lg-block">
-			<li class="list-inline-item">
-				<a class="btn-floating btn-fb mx-1">
-					<i class="fab fa-facebook-f"></i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-tw mx-1">
-					<i class="fab fa-twitter"></i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-tw mx-1">
-					<i class="fab fa-instagram"></i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-gplus mx-1">
-					<i class="fab fa-youtube"></i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-li mx-1">
-					<i class="fab fa-linkedin-in"></i>
-				</a>
-			</li>
 		</ul>
-	{% endif %}
+	</div>
+	<ul class="list-unstyled list-inline text-secondary d-none d-lg-block">
+		<li class="list-inline-item">
+			<a class="btn-floating btn-fb mx-1" target="_blank" href="{{info.facebook}}">
+				<i class="fab fa-facebook-f"></i>
+			</a>
+		</li>
+		<li class="list-inline-item">
+			<a class="btn-floating btn-tw mx-1" target="_blank" href="{{info.twitter}}">
+				<i class="fab fa-twitter"></i>
+			</a>
+		</li>
+		<li class="list-inline-item">
+			<a class="btn-floating btn-tw mx-1" target="_blank" href="{{info.instagram}}">
+				<i class="fab fa-instagram"></i>
+			</a>
+		</li>
+		<li class="list-inline-item">
+			<a class="btn-floating btn-gplus mx-1" target="_blank" href="{{info.youtube}}">
+				<i class="fab fa-youtube"></i>
+			</a>
+		</li>
+		<li class="list-inline-item">
+			<a class="btn-floating btn-li mx-1" target="_blank" href="{{info.linkedin}}">
+				<i class="fab fa-linkedin-in"></i>
+			</a>
+		</li>
+	</ul>
 </nav>
