@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un compte
+{% endblock %}
+
+{% block body %}
+
+	{% embed "partials/admin_page.html.twig" %}
+		{% import "macros/macros.html.twig" as macros %}
+		{% block form %}
+			{% for flashError in app.flashes('verify_email_error') %}
+				<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+			{% endfor %}
+
+			{{ form_start(form) }}
+			{{ form_row(form.email) }}
+			{{ form_row(form.plainPassword, {label: 'Password'}) }}
+
+			{{ form_row(form.valider) }}
+			{% if cancelUrl is defined %}
+				<a class="btn btn-danger" href="{{cancelUrl}}">Annuler</a>
+			{% endif %}
+
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{message}}
+				</div>
+			{% endfor %}
+
+			{{ form_end(form) }}
+
+		{% endblock %}
+	{% endembed %}
+{% endblock %}

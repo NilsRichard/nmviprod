@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Video;
 use App\Entity\VideoCategory;
 use App\Entity\WebSiteContent;
+use App\Form\RegistrationFormType;
 use App\Form\VideoCategoryFormType;
 use App\Form\VideoFormType;
 use App\Form\WebSiteContentFormType;
@@ -13,26 +15,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @IsGranted("ROLE_ADMIN")
  * @Route("/admin", name="admin_")
  */
-class AdminController extends AbstractController
+class AdminController extends ApplicationController
 {
-    public function renderWithContent(string $view, array $parameters = [])
-    {
-        $info =  $this->getDoctrine()->getRepository(WebSiteContent::class)->findOneBy([]);
-        if($info == null){
-            $info = new WebSiteContent();
-            $info->initializeDefault();
-        }
-
-        $parameters['info'] = $info;
-        
-        return $this->render($view, $parameters);
-    }
-
     /**
      * @Route("/videos", name="videos")
      */
@@ -63,7 +54,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_videos');
         }
 
-        return $this->renderWithContent('admin/videos.html.twig', [
+        return $this->render('admin/videos.html.twig', [
             'form' => $form->createView(),
             'videos' => $videos,
         ]);
@@ -98,7 +89,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_videos');
         }
 
-        return $this->renderWithContent('admin/modify.html.twig', [
+        return $this->render('admin/modify.html.twig', [
             'entityName' => 'vidéo',
             'cancelUrl' => $this->generateUrl('admin_videos'),
             'form' => $form->createView(),
@@ -144,7 +135,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_video_categories');
         }
 
-        return $this->renderWithContent('admin/video_categories.html.twig', [
+        return $this->render('admin/video_categories.html.twig', [
             'form' => $form->createView(),
             'categories' => $categories,
         ]);
@@ -153,7 +144,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/categories/{id}", name="modify_video_category")
      */
-    public function modifyVideoCategories($id,Request $request)
+    public function modifyVideoCategories($id, Request $request)
     {
         $video_category = $this->getDoctrine()->getRepository(VideoCategory::class)->findOneBy([
             'id' => $id,
@@ -172,14 +163,14 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_video_categories');
         }
 
-        return $this->renderWithContent('admin/modify.html.twig', [
+        return $this->render('admin/modify.html.twig', [
             'entityName' => 'catégorie',
             'form' => $form->createView(),
             'cancelUrl' => $this->generateUrl('admin_video_categories'),
         ]);
     }
 
-     /**
+    /**
      * @Route("/category/remove/{id}", name="remove_video_category")
      */
     public function removeVideoCategory($id)
@@ -188,10 +179,10 @@ class AdminController extends AbstractController
             'id' => $id,
         ]);
 
-        if($video_category->getVideos()->isEmpty()) {
-            
+        if ($video_category->getVideos()->isEmpty()) {
+
             $em = $this->getDoctrine()->getManager();
-            
+
             $em->remove($video_category);
             $em->flush();
         }
@@ -208,7 +199,7 @@ class AdminController extends AbstractController
     {
         $information = $this->getDoctrine()->getRepository(WebSiteContent::class)->findOneBy([]);
 
-        if($information == null) $information = new WebSiteContent();
+        if ($information == null) $information = new WebSiteContent();
 
         $form = $this->createForm(WebSiteContentFormType::class, $information);
 
@@ -223,8 +214,42 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_modify_information');
         }
 
-        return $this->renderWithContent('admin/modify.html.twig', [
+        return $this->render('admin/modify.html.twig', [
             'entityName' => 'information',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/register", name="register")
+     */
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $msg = 'Le nouvel utilisateur ' . $user->getEmail() . ' a été enregistré';
+
+            $this->addFlash('success', $msg);
+            // do anything else you need here, like send an email
+        }
+
+
+        return $this->render('admin/register.html.twig', [
             'form' => $form->createView(),
         ]);
     }
