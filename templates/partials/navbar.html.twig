@@ -8,8 +8,10 @@
 				Nmvi production
 			</span>
 			{% if is_granted('ROLE_USER') %}
-				<span class="navbar-text" style="cursor: default;">
-					Connecté ({{app.user.email}})
+				<span class="navbar-text" style="cursor: default;display:inline">
+					<font class="d-block">Connecté
+					 ({{app.user.email}})
+					</font>
 				</span>
 
 			{% endif %}
