@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Entity\VideoCategory;
@@ -251,6 +252,18 @@ class AdminController extends ApplicationController
 
         return $this->render('admin/register.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/messages", name="messages")
+     */
+    public function messages()
+    {
+        $messages =  $this->getDoctrine()->getRepository(Message::class)->findAll();
+
+        return $this->render('admin/messages.html.twig', [
+            'messages' => $messages,
         ]);
     }
 }

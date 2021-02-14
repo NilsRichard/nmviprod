@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
 use App\Entity\Video;
 use App\Entity\VideoCategory;
 use App\Entity\WebSiteContent;
+use App\Form\MessageFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends ApplicationController
 {
@@ -81,10 +84,27 @@ class MainController extends ApplicationController
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact()
+    public function contact(Request $request)
     {
+        $message = new Message();
+        $form = $this->createForm(MessageFormType::class, $message);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($message);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Message envoyé');
+
+            $message = new Message();
+            $form = $this->createForm(MessageFormType::class, $message);
+
+        }
         return $this->render('main/contact.html.twig', [
-            'controller_name' => 'MainController',
+            'form' => $form->createView(),
         ]);
     }
 
