@@ -11,30 +11,27 @@
 			<div class="row">
 				<div class="col-9">
 					<h2>Messages</h2>
-					<p>Voici la liste des messages :</p>
 				</div>
 			</div>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Nom</th>
-						<th>Email</th>
-						<th>Message</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for message in messages %}
-						<tr>
-							<td>{{message.name}}</td>
-							<td>{{message.email}}</td>
-							<td><p>{{message.content| nl2br}}
-							</p></td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+			<hr>
+			<br>
+
+			{% for message in messages %}
+				<h5>
+					<b>De :</b>
+					{{message.name}}</h5>
+				<p>
+					{{message.content| nl2br}}
+				</p>
+				<h5>
+					<b>Répondre :</b>
+					<a href="mailto:{{message.email}}">{{message.email}}</a>
+				</h5>
+				<br>
+				<hr>
+				<br>
+			{% endfor %}
 
 		{% endblock %}
-
 	{% endembed %}
 {% endblock %}

@@ -9,11 +9,10 @@
 		{% import "macros/macros.html.twig" as macros %}
 		{% block table %}
 			<div class="row">
-				<div class="col-9">
+				<div class="col-8">
 					<h2>Vidéos</h2>
-					<p>Voici la liste des vidéos présentes sur le site :</p>
 				</div>
-				<div class="col-3">
+				<div class="col-4">
 					<a class="btn btn-primary m-2 js-scroll-trigger" href="#ajouterVideo">
 						Ajouter une vidéo
 					</a>
@@ -24,7 +23,7 @@
 					<tr>
 						<th>Titre</th>
 						<th>Url</th>
-						<th>Description</th>
+						<th class="d-none d-md-block">Description</th>
 						<th>Catégorie</th>
 						<th>Action</th>
 					</tr>
@@ -35,10 +34,10 @@
 							<td>{{video.title}}</td>
 							<td>
 								<a href="{{video.url}}">
-									{{video.url}}
+									lien
 								</a>
 							</td>
-							<td>{{video.description}}</td>
+							<td class="d-none d-md-block">{{video.description}}</td>
 							<td>{{video.category.title}}</td>
 							<td>
 								{{macros.actionButton(path('admin_modify_video', {"id": video.id} ), "fa fa-edit", "Modifier")}}
