@@ -7,10 +7,10 @@
 	<section class="page-section-small">
 		<div class="container-fluid">
 			<div class="row justify-content-end">
-				<div class="col-4 text-center">
+				<div class="col-sm-4 text-center">
 
 					<select class="form-control" id="" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-						<option value="{{path('portfolio')}}" selected>Toutes les catégories</option>
+						<option  value="{{path('portfolio')}}" selected>Toutes les catégories</option>
 						{% for category in categories %}
 							<option value="{{path('portfolio', {id: category.id})}}" {% if selectedCategory and category.id == selectedCategory.id %} selected {% endif %}>
 								{{category.title}}
