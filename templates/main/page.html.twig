@@ -1,23 +1,22 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Page title
-{% endblock %}
+{% extends "base.html.twig" %}
 
 {% block backbutton %}{% endblock %}
 
 {% block body %}
 	<div class="page">
-		<section class="page-section-small ">
-			<div class="container-fluid">
-				{{ block('backbutton') }}
-				<div class="row justify-content-center">
-					<div class="col-lg-4 text-center">
-						<h2 class="mt-0">{{ block('title') }}</h2>
-						<hr class="divider primary my-4"/>
+		{% if block("title") is defined %}
+			<section class="page-section-small mt-5">
+				<div class="container-fluid">
+					{{ block("backbutton") }}
+					<div class="row justify-content-center">
+						<div class="col-lg-4 text-center">
+							<h2 class="mt-0">{{ block("title") }}</h2>
+							<hr class="divider primary my-4"/>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		{% endif %}
 
 		{% block sections %}{% endblock %}
 

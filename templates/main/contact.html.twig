@@ -1,4 +1,4 @@
-{% extends 'main/page.html.twig' %}
+{% extends "main/page.html.twig" %}
 
 {% block title %}Contactez moi
 {% endblock %}
@@ -13,17 +13,34 @@
 					<hr>
 
 					{{ form_start(form) }}
-					{{ form_row(form.name) }}
-					{{ form_row(form.email) }}
-					{{ form_row(form.content, {label: 'Message'}) }}
+
+					<div class="row center">
+						<div class="col-sm">
+							{{ form_row(form.name , {label: "Prénom*"}) }}
+						</div>
+						<div class="col-sm">
+							{{ form_row(form.lastName , {label: "Nom*"}) }}
+						</div>
+					</div>
+
+					{{ form_row(form.topic, {label: "Votre demande concerne"}) }}
+					<div id="otherTopic" style="display: none">
+						{{ form_row(form.otherTopic, {label: "Précisez"}) }}
+					</div>
+
+					{{ form_row(form.email, {label: "Email*"}) }}
+					{{ form_row(form.content, {label: "Message*"}) }}
+					{{ form_row(form.date, {label: "Date de l\"évènement"}) }}
+					{{ form_row(form.howDoYouKnowMe, {label: "Comment m\'avez-vous connu ?"}) }}
 					{{ form_row(form.captcha) }}
 
+
 					{{ form_row(form.envoyer) }}
-					{% if cancelUrl is defined %}
+					{% if cancelUrl is defined %} 
 						<a class="btn btn-danger" href="{{cancelUrl}}">Annuler</a>
 					{% endif %}
 
-					{% for message in app.flashes('success') %}
+					{% for message in app.flashes("success") %}
 						<div class="alert alert-success">
 							{{message}}
 						</div>
@@ -44,4 +61,16 @@
 			</div>
 		</div>
 	</section>
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+document.getElementById("message_form_topic").addEventListener("change", function () {
+if (this.value === "Autre") 
+document.getElementById("otherTopic").style.display = "block"
+ else 
+document.getElementById("otherTopic").style.display = "none"
+});
+</script>
 {% endblock %}

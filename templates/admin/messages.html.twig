@@ -19,10 +19,33 @@
 			{% for message in messages %}
 				<h5>
 					<b>De :</b>
-					{{message.name}}</h5>
+					{{message.name}}
+					{{message.lastName | upper}}
+				</h5>
+				<h5>
+					<b>Concerne :</b>
+					{{message.topic}}
+					{% if message.otherTopic is not null %}
+						({{message.otherTopic}})
+					{% endif %}
+				</h5>
+				{% if message.date is not null %}
+					<h5>
+						<b>Date de l'évènement :</b>
+						{{message.date | date("d/m/Y", "Europe/Paris")}}
+					</h5>
+				{% endif %}
+				{% if message.howDoYouKnowMe is not null %}
+					<h5>
+						<b>M'a connu de :</b>
+						{{message.howDoYouKnowMe}}
+					</h5>
+				{% endif %}
+				<br>
 				<p>
 					{{message.content| nl2br}}
 				</p>
+				<br>
 				<h5>
 					<b>Répondre :</b>
 					<a href="mailto:{{message.email}}">{{message.email}}</a>
