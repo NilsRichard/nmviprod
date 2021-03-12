@@ -1,13 +1,14 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg fixed-top py-3 mb-5 navbar-light " id="mainNav">
+{# {{app.request.get("_route")}} #}
 	<div style="width:9em">
-		<a class="navbar-brand js-scroll-trigger" href="{{path('home')}}">
+		<a class="navbar-brand js-scroll-trigger" href="{{path("home")}}">
 
-			<img class="d-none d-lg-block" src="{{ asset('img/logo-150.png') }}" alt="logo nmvi">
+			<img class="d-none d-lg-block" src="{{ asset("img/logo-150.png") }}" alt="logo nmvi">
 			<span class="d-lg-none" style="width:100%">
 				Nmvi production
 			</span>
-			{% if is_granted('ROLE_USER') %}
+			{% if is_granted("ROLE_USER") %}
 				<span class="navbar-text" style="cursor: default;display:inline">
 					<font class="d-block">Connecté
 					 ({{app.user.email}})
@@ -25,42 +26,52 @@
 		<ul class="navbar-nav mx-auto">
 
 			<li class="nav-item">
-				<a class="nav-link" href="{{path('home')}}">
+				<a class="nav-link {% if app.request.get("_route") == "home" %} active {% endif %}" href="{{path("home")}}">
 					<i class="fas fa-home"></i>
 					Accueil</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{{path('about')}}">
+				<a class="nav-link {% if app.request.get("_route") == "about" %} active {% endif %}" href="{{path("about")}}">
 					<i class="fas fa-info-circle"></i>
-					Qui suis-je ?</a>
+					A propos</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link " href="{{path('portfolio')}}">
+				<a class="nav-link {% if app.request.get("_route") == "portfolio" %} active {% endif %}" href="{{path("portfolio")}}">
 					<i class="fas fa-film "></i>
 					Portfolio</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{{path('location')}}">
+				<a class="nav-link {% if app.request.get("_route") == "photography" %} active {% endif %}" href="{{path("photography")}}">
 					<i class="fas fa-camera-retro"></i>
-					Location</a>
+					Photographie</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{{path('services')}}">
+				<a class="nav-link {% if app.request.get("_route") == "music" %} active {% endif %}" href="{{path("music")}}">
+					<i class="fas fa-music"></i>
+					Musique</a>
+			</li>
+			{# <li class="nav-item">
+				<a class="nav-link {% if app.request.get("_route") == "location" %} active {% endif %}" href="{{path("location")}}">
+					<i class="fas fa-camera-retro"></i>
+					Location</a>
+			</li> #}
+			<li class="nav-item">
+				<a class="nav-link {% if app.request.get("_route") == "services" %} active {% endif %}" href="{{path("services")}}">
 					<i class="fas fa-video"></i>
 					Services</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{{path('projectupo')}}">
+				<a class="nav-link {% if app.request.get("_route") == "projectupo" %} active {% endif %}" href="{{path("projectupo")}}">
 					<i class="fas fa-film"></i>
 					UPO</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{{path('projectupouvp')}}">
+			{# <li class="nav-item">
+				<a class="nav-link {% if app.request.get("_route") == "projectupouvp" %} active {% endif %}" href="{{path("projectupouvp")}}">
 					<i class="fas fa-film"></i>
 					UPO-UVP</a>
-			</li>
+			</li> #}
 			<li class="nav-item">
-				<a class="nav-link" href="{{path('contact')}}">
+				<a class="nav-link {% if app.request.get("_route") == "contact" %} active {% endif %}" href="{{path("contact")}}">
 					<i class="fas fa-envelope"></i>
 					Contact</a>
 			</li>

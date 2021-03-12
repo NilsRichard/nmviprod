@@ -76,6 +76,7 @@ video {
 #mainNav .navbar-text {
   font-size: 1rem;
 } 
+
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   background-color: #fff;
@@ -88,78 +89,37 @@ video {
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
-  color: #6c757d;
+  color: #212529 ;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 0.75rem 0;
 }
 
-#mainNav .navbar-nav .nav-item .nav-link:hover,
-#mainNav .navbar-nav .nav-item .nav-link:active {
-  color: #546de3;
-}
-
-#mainNav .navbar-nav .nav-item .nav-link.active {
+#mainNav .navbar-nav .nav-item .nav-link:hover{
   color: #546de3 !important;
 }
 
+.active {
+  background-color: white;
+  color: #546de3 !important;
+}
 
 @media (max-width: 992px) {
-  video {
-    margin-top: 72px;
-  }
-
   .page {
-    padding-top: 80px;
+    padding-top: 72px;
   }
 }
 
 @media (min-width: 992px) {
-
   .page {
-    padding-top: 150px;
+    padding-top: 146px;
   }
-
-  #mainNav {
-    box-shadow: none;
-    background-color: transparent;
-  }
-
-  #mainNav .navbar-brand {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  #mainNav .navbar-brand:hover {
-    color: #fff;
-  }
-
   #mainNav .navbar-nav .nav-item .nav-link {
-    color: rgba(255, 255, 255, 0.7);
     padding: 0 1rem;
-  }
-
-  #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #fff;
-  }
-
-  #mainNav .navbar-nav .nav-item:last-child .nav-link {
-    padding-right: 0;
   }
 
   #mainNav.navbar-scrolled {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     background-color: #fff;
-  }
-
-  #mainNav .navbar-brand {
-    color: #212529 !important;
-  }
-
-  #mainNav .navbar-nav .nav-item .nav-link {
-    color: #212529 !important;
-  }
-
-  #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #546de3 !important;
   }
 }

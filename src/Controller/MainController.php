@@ -72,15 +72,37 @@ class MainController extends ApplicationController
         ]);
     }
 
+    // /**
+    //  * @Route("/location", name="location")
+    //  */
+    // public function location()
+    // {
+    //     return $this->render('main/location.html.twig', [
+    //         'controller_name' => 'MainController',
+    //     ]);
+    // }
+
     /**
-     * @Route("/location", name="location")
+     * @Route("/photography", name="photography")
      */
-    public function location()
+    public function photography()
     {
-        return $this->render('main/location.html.twig', [
+        return $this->render('main/photography.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
+
+    /**
+     * @Route("/music", name="music")
+     */
+    public function music()
+    {
+        return $this->render('main/music.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+
     /**
      * @Route("/contact", name="contact")
      */
@@ -128,14 +150,14 @@ class MainController extends ApplicationController
         ]);
     }
 
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/projectupouvp", name="projectupouvp")
-     */
-    public function projectupouvp()
-    {
-        return $this->render('main/project_upo_uvp.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
-    }
+    // /**
+    //  * @IsGranted("ROLE_USER")
+    //  * @Route("/projectupouvp", name="projectupouvp")
+    //  */
+    // public function projectupouvp()
+    // {
+    //     return $this->render('main/project_upo_uvp.html.twig', [
+    //         'controller_name' => 'MainController',
+    //     ]);
+    // }
 }
