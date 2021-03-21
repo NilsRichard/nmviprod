@@ -1,5 +1,12 @@
 monolog:
     handlers:
+        honeypot:
+            level: info
+            type: rotating_file
+            max_files: 10
+            path: "%kernel.logs_dir%/security/honeypot/honeypot.%kernel.environment%.log"
+            channels:
+                - app
         main:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"

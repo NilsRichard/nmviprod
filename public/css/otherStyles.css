@@ -39,6 +39,16 @@ body {
   overflow-x: hidden;
 }
 
+.important-info {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
+
 video {
   width: 100%;
   height: auto;
@@ -75,7 +85,7 @@ video {
 
 #mainNav .navbar-text {
   font-size: 1rem;
-} 
+}
 
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -89,13 +99,13 @@ video {
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
-  color: #212529 ;
+  color: #212529;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 0.75rem 0;
 }
 
-#mainNav .navbar-nav .nav-item .nav-link:hover{
+#mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #546de3 !important;
 }
 

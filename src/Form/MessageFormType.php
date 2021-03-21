@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Message;
+use App\Form\FormExtension\HoneyPotType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -13,10 +14,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class MessageFormType extends AbstractType
+class MessageFormType extends HoneyPotType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder,$options);
         $builder
             ->add('name', null, ['required' => true])
             ->add('lastName', null, ['required' => true])
@@ -47,6 +49,7 @@ class MessageFormType extends AbstractType
             ->add('envoyer', SubmitType::class, ['attr' => ['class' => 'btn btn-primary'],])
             ->add('captcha', CaptchaType::class, [
                 'mapped' => false,
+                'required' => true
             ]);
     }
 
